@@ -43,13 +43,13 @@ ubuntu@ip-172-31-19-209:~$ aws ec2 create-volume --region us-east-1 --availabili
 ubuntu@ip-172-31-19-209:~$ aws ec2 attach-volume --region us-east-1 --volume-id vol-cd008684 --instance-id i-b3587ce3 --device /dev/sdf
 ```
 
-* Create a folder and mount the volume on the AWS instance. This may take quite some time (up to mins).
+* Create a folder and mount the volume on the AWS instance. This may take quite some time (up to 20 or 30 mins).
 ```
 ubuntu@ip-172-31-19-209:~$ mkdir /mnt/wikidata
 ubuntu@ip-172-31-19-209:~$ sudo mount /dev/xvdf1 /mnt/wikidata
 ```
 
-* Create a S3 bucket via the AWS console. For example, the bucket I created here is called wikipedia-data-msan695-lee
+* Create a S3 bucket via the AWS console. For example, the bucket I created here is called my-bucket-lee. 
 
 ![IMAGE](figures/S3.png)
 ![IMAGE](figures/Create Bucket.png)
@@ -59,7 +59,7 @@ ubuntu@ip-172-31-19-209:~$ sudo mount /dev/xvdf1 /mnt/wikidata
 
 * Copy all the wikipedia data to the s3 bucket. This will take up to a few hours.
 ```
-ubuntu@ip-172-31-19-209:~$ sudo aws s3 cp /mnt/wikidata/wikistats/ s3://wikipedia-data-msan695-lee/ --recursive --region us-east-1
+ubuntu@ip-172-31-19-209:~$ sudo aws s3 cp /mnt/wikidata/wikistats/ s3://my-bucket-lee/input/ --recursive --region us-east-1
 ```
 
 * Create mapper and reducer using python. Upload them into the S3 bucket.
@@ -68,7 +68,7 @@ ubuntu@ip-172-31-19-209:~$ sudo aws s3 cp /mnt/wikidata/wikistats/ s3://wikipedi
 ![IMAGE](figures/Upload Mapper and Reducer 1.png)
 ![IMAGE](figures/Upload Mapper and Reducer 2.png)
 
-* Create the cluster
+* Create the cluster. Make sure the S3 bucket that you created is consistent. The examples below do not use my-bucket-lee that I created earlier. Replace all my-bucket with my-bucket-lee on all entries in all images below.
 
 ![IMAGE](figures/AWS Console 3.png)
 ![IMAGE](figures/Elastic MapReduce.png)
