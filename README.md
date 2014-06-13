@@ -49,7 +49,7 @@ ubuntu@ip-172-31-19-209:~$ mkdir /mnt/wikidata
 ubuntu@ip-172-31-19-209:~$ sudo mount /dev/xvdf1 /mnt/wikidata
 ```
 
-* Create a S3 bucket via the AWS console. For example, the bucket I created here is called my-bucket-lee. 
+* Create a S3 bucket via the AWS console. For example, the bucket I created here is called my-bucket-lee. After that create all the folders inside my-bucket-lee.
 
 ![IMAGE](figures/S3.png)
 ![IMAGE](figures/Create Bucket.png)
